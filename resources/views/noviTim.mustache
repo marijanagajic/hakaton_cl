@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../../../css/style3.css">
+    <link rel="stylesheet" href="../../../css/style2.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="../../../js/main.js"></script>
+    <title>Novi tim</title>
+</head>
+<body>
+<ul class="nav nav-pills" id="navMeni" style="margin-bottom:15px;">
+    <li role="presentation"><a href="/index">Početna</a></li>
+    <li role="presentation"><a href="/timovi">Timovi</a></li>
+</ul>
+<div id="forma" style="width:30%;margin-left: 150px;">
+    <h3 style="margin-bottom:20px;color:#0f0f76;">Unesite podatke o timu</h3>
+    <form action="/model/timovi/dodajTim" method="post">
+        <div class="form-group">
+            <label for="model">Naziv tima</label>
+            <input type="text" class="form-control" name="nazivtima" placeholder="Naziv tima"/>
+        </div>
+        <div class="form-group">
+            <label for="year">Napomena</label>
+            <input type="text" class="form-control" name="napomena" placeholder="Napomena"/>
+        </div>
+        <div class="form-group">
+            <label for="horsepower">Username</label>
+            <input type="text" class="form-control" name="username" placeholder="Username"/>
+        </div>
+        <div class="form-group">
+            <label for="model">Password</label>
+            <input type="text" class="form-control" name="password" placeholder="Password"/>
+        </div>
+        <div class="form-group">
+            <label for="model">Broj dosadašnjih takmičenjima na kojima je tim učestvovao</label>
+            <input type="text" class="form-control" name="brojtakmicenja" placeholder="Broj takmičenja"/>
+        </div>
+        <div class="form-group">
+            <label for="model">Broj članova tima</label>
+            <input type="text" class="form-control" name="brojclanova" placeholder="Broj članova" />
+        </div>
+
+        <div class="form-group">
+
+            <label>Grad u kome će se tim takmičiti</label>
+            <select name="idgrad" class="form-control" id="idgrad">
+                {{#gradovi}}
+                    <option value="{{idgrad}}">{{naziv}}</option>
+                {{/gradovi}}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-left: 130px;">Sačuvaj novi tim</button>
+    </form>
+</div>
+
+
+
+</body>
+</html>

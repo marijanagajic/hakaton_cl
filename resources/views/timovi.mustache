@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="css/style2.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/jquery-confirm.min.js"></script>
+    <script src="js/main.js"></script>
+    <title>Timovi</title>
+</head>
+<body>
+
+<div class="container">
+    <ul class="nav nav-pills" id="navMeni">
+        <li role="presentation"><a href="/index">Početna</a></li>
+        <li role="presentation"><a href="/timovi">Timovi</a></li>
+        <li role="presentation"><a href="/model/timovi/dodajTim">Dodaj novi tim</a></li>
+    </ul>
+
+
+    <h1>
+
+        Pregled prijavljenih timova za takmičenje na hakatonu
+    </h1>
+
+    <h3>Osnovne informacije o timu, sa mogućnošću izmene ili brisanja tima</h3>
+
+
+
+    <table class="table table-hover">
+    <tr>
+
+
+        <th>Naziv</th>
+        <th>Napomena</th>
+        <th>Broj članova</th>
+        <th>Grad takmičenja</th>
+        <th>Izmeni</th>
+        <th>Obriši</th>
+
+        {{#timovi}}
+
+        <tr class="success">
+
+            <th>{{nazivtima}}</th>
+            <th>{{napomena}}</th>
+            <th>{{brojclanova}}</th>
+            <th>{{naziv}}</th>
+            <td><a href="/model/timovi/{{idtim}}/update" class="btn btn-primary">Izmeni/Detaljnije</a></td>
+            <td><a href="/model/timovi/{{idtim}}/remove" class="btn btn-default" style="background-color:red;">Obriši</a></td>
+        </tr>
+        {{/timovi}}
+
+    </table>
+
+</div>
+</body>
+</html>

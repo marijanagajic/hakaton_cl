@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../../../css/style3.css">
+    <link rel="stylesheet" href="../../../css/style2.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="../../../js/main.js"></script>
+    <title>Izmena</title>
+</head>
+<body>
+<ul class="nav nav-pills" id="navMeni">
+    <li role="presentation"><a href="/index">Početna</a></li>
+    <li role="presentation"><a href="/timovi">Timovi</a></li>
+    <li role="presentation"><a href="/model/timovi/dodajTim">Dodaj novi tim</a></li>
+</ul>    <br>
+<div id="forma" style="width:33%;margin-left: 150px; margin-top:20px;">
+    <h3 style="margin-bottom:20px;color:#0f0f76;">Izmenite podatke o timu, izbrišite tim, ili dodajte novog člana tima</h3>
+<div>
+
+    <form action="/model/timovi/{{timovi.idtim}}/update" method="post">
+
+        <div class="form-group">
+            <label for="model">Naziv tima</label>
+            <input type="text" class="form-control" name="nazivtima" value="{{timovi.nazivtima}}"/>
+        </div>
+        <div class="form-group">
+            <label for="year">Napomena</label>
+            <input type="text" class="form-control" name="napomena" value="{{timovi.napomena}}"/>
+        </div>
+        <div class="form-group">
+            <label for="horsepower">Username</label>
+            <input type="text" class="form-control" name="username" value="{{timovi.username}}"/>
+        </div>
+        <div class="form-group">
+            <label for="horsepower">Broj takmičenja na kojima je tim učestvovao</label>
+            <input type="text" class="form-control" name="brojtakmicenja" value="{{timovi.brojtakmicenja}}"/>
+        </div>
+        <div class="form-group">
+            <label for="horsepower">Broj članova tima</label>
+            <input type="text" class="form-control" name="brojclanova" value="{{timovi.brojclanova}}"/>
+        </div>
+
+        <div class="form-group">
+
+            <label>Grad u kome će se tim takmičiti</label>
+            <select name="idgrad" class="form-control" id="idgrad">
+                {{#gradovi}}
+                    <option value="{{idgrad}}">{{naziv}}</option>
+                {{/gradovi}}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Sačuvaj izmene</button>
+        <td><a href="/model/timovi/{{timovi.idtim}}/remove" class="btn btn-danger" style="width:150px; float:right">Obriši</a></td>
+
+            </form>
+</div>
+
+    <div style="float:left">
+
+    <h3 style="width: 900px; margin-left:230px;margin-top:25px; ">Članovi tima - {{timovi.nazivtima}}</h3>
+    <table style="width: 900px; margin-left:230px; margin-top:25px;" class="table table-hover">
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Godine iskustva</th>
+        <th>e-mail</th>
+        {{#clanovi}}
+            <tr class="success">
+                <th>{{ime}}</th>
+                <th>{{prezime}}</th>
+                <th>{{godiskustva}}</th>
+                <th>{{email}}</th>
+            </tr>
+        {{/clanovi}}
+
+    </table>
+
+    <td><a href="/model/timovi/{{timovi.idtim}}/dodajClana" class="btn btn-primary" style="width:200px; padding-top:10px;padding-bottom:10px ;margin-left:580px;margin-bottom:70px">Dodaj novog člana tima</a></td>
+    </div>
+
+    </div>
+
+
+
+
+</body>
+</html>

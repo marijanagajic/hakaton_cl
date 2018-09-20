@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../../../css/style3.css">
+    <link rel="stylesheet" href="../../../css/style2.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="../../../js/main.js"></script>
+    <title>Novi tim</title>
+</head>
+<body>
+<ul class="nav nav-pills" id="navMeni" style="margin-bottom:15px;">
+    <li role="presentation"><a href="/index">Početna</a></li>
+    <li role="presentation"><a href="/timovi">Timovi</a></li>
+</ul>
+<div id="forma" style="width:30%;margin-left: 150px;">
+    <h3 style="margin-bottom:20px;color:#0f0f76;">Unesite podatke o članu</h3>
+    <form action="/model/timovi/{{idtim}}/dodajClana" method="post">
+    <div class="form-group">
+        <label for="horsepower">Id tima</label>
+        <input type="text" class="form-control" name="idtim" value="{{idtim}}" readonly="true"/>
+    </div>
+
+        <div class="form-group">
+            <label for="model">Ime</label>
+            <input type="text" class="form-control" name="ime" placeholder=""/>
+        </div>
+        <div class="form-group">
+            <label for="year">Prezime</label>
+            <input type="text" class="form-control" name="prezime" placeholder=""/>
+        </div>
+
+        <div class="form-group">
+            <label for="model">Godine iskustva (*celi brojevi)</label>
+            <input type="text" class="form-control" name="godiskustva" placeholder=""/>
+        </div>
+        <div class="form-group">
+            <label for="model">e-mail</label>
+            <input type="text" class="form-control" name="email" placeholder=""/>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary" style="margin-left: 130px;">Sačuvaj novog člana</button>
+    </form>
+
+
+</div>
+
+
+
+</body>
+</html>
