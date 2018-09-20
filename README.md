@@ -2,6 +2,8 @@
 Web aplikacija realizovana koristeći CRUD funkcionalnosti.
 START: lein ring server
 
+Skripta MySQL baze se nalazi u folderu "baza".
+
 Aplikacija je razvijena u Clojure programskom jeziku koristeći Leiningen, biblioteke za web aplikacije kao što su: Ring, Compojure, SQL jdbc za povezivanje sa MySQL bazom podataka i Mustache za izradu stranica.
 
 Aplikacija omogućava pregled u vidu tabele svih prijavljenih timova za takmičenje na hakatonu. 
