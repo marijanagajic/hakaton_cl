@@ -35,6 +35,10 @@
   (jdbc/query mysql-db
                      (sql/select * :clanovi (sql/where {:idtim id}))))
 
+(defn sviProjektiClana [id]
+  (jdbc/query mysql-db
+              (sql/select * :projekti (sql/where {:idclan id}))))
+
 (defn obrisiTim [id]
   (jdbc/delete! mysql-db :timovi (sql/where {:idtim id})))
 
@@ -47,3 +51,6 @@
 
 (defn insertClan [params]
   (jdbc/insert! mysql-db :clanovi params))
+
+(defn insertProjekat [params]
+  (jdbc/insert! mysql-db :projekti params))

@@ -17,7 +17,37 @@
     <li role="presentation"><a href="/index">Početna</a></li>
     <li role="presentation"><a href="/timovi">Timovi</a></li>
     <li role="presentation"><a href="/model/timovi/dodajTim">Dodaj novi tim</a></li>
-</ul>    <br>
+</ul>
+
+<div style="float:right">
+
+    <h3 style="width: 750px;margin-top:25px; margin-right:50px ">Članovi tima - {{timovi.nazivtima}}</h3>
+    <table style="width: 750px;margin-top:25px; margin-right:50px" class="table table-hover">
+    <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Godine iskustva</th>
+        <th>e-mail</th>
+        <th>Dodaj projekat člana</th>
+        {{#clanovi}}
+            <tr class="success">
+                <th>{{ime}}</th>
+                <th>{{prezime}}</th>
+                <th>{{godiskustva}}</th>
+                <th>{{email}}</th>
+                <td><a href="/model/timovi/{{idclan}}/dodajProjekat" class="btn btn-primary">Dodaj projekat</a></td>
+            </tr>
+        {{/clanovi}}
+        {{^clanovi}}
+            <h3 style="font-size:18px; color:red; margin-left:190px; font-style:italic">
+                Nema zabeleženih članova tima. Unesite članove! </h3>
+        {{/clanovi}}
+
+    </table>
+
+    <td><a href="/model/timovi/{{timovi.idtim}}/dodajClana" class="btn btn-primary" style="width:200px; padding-top:10px;padding-bottom:10px ;margin-left:300px;margin-bottom:70px">Dodaj novog člana tima</a></td>
+</div>
+
 <div id="forma" style="width:33%;margin-left: 150px; margin-top:20px;">
     <h3 style="margin-bottom:20px;color:#0f0f76;">Izmenite podatke o timu, izbrišite tim, ili dodajte novog člana tima</h3>
 <div>
@@ -60,28 +90,6 @@
             </form>
 </div>
 
-    <div style="float:left">
-
-    <h3 style="width: 900px; margin-left:230px;margin-top:25px; ">Članovi tima - {{timovi.nazivtima}}</h3>
-    <table style="width: 900px; margin-left:230px; margin-top:25px;" class="table table-hover">
-    <tr>
-        <th>Ime</th>
-        <th>Prezime</th>
-        <th>Godine iskustva</th>
-        <th>e-mail</th>
-        {{#clanovi}}
-            <tr class="success">
-                <th>{{ime}}</th>
-                <th>{{prezime}}</th>
-                <th>{{godiskustva}}</th>
-                <th>{{email}}</th>
-            </tr>
-        {{/clanovi}}
-
-    </table>
-
-    <td><a href="/model/timovi/{{timovi.idtim}}/dodajClana" class="btn btn-primary" style="width:200px; padding-top:10px;padding-bottom:10px ;margin-left:580px;margin-bottom:70px">Dodaj novog člana tima</a></td>
-    </div>
 
     </div>
 

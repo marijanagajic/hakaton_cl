@@ -44,7 +44,16 @@
              (do (timovi-model/insertClan params)
                  (resp/redirect "/timovi")))
 
+           (GET "/model/timovi/:id/dodajProjekat" [id] (controller/dodatiProjekat id))
+
+           (POST "/model/timovi/:idclan/dodajProjekat" [& params]
+             (do (timovi-model/insertProjekat params)
+                 (resp/redirect "/timovi")))
+
            )
+
+
+
 
 
 

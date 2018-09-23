@@ -18,6 +18,12 @@
 (defn login []
   (render-template "login" {}))
 
+
+(defn timovi []
+  (render-template "timovi" {:timovi (timovi-model/sviTimoviJoinGradovi)
+                             :gradovi (timovi-model/sviGradovi)
+                             }))
+
 (defn izmenitiTim [id]
   (render-template "izmenaTim" {:timovi (timovi-model/get id)
                                      :gradovi (timovi-model/sviGradovi)
@@ -35,7 +41,7 @@
   (render-template "noviClanTima" {:idtim id}
                    ))
 
-(defn timovi []
-  (render-template "timovi" {:timovi (timovi-model/sviTimoviJoinGradovi)
-                                :gradovi (timovi-model/sviGradovi)
-                                }))
+(defn dodatiProjekat [id]
+  (render-template "noviProjekat" {:idclan id
+                                      :projekti (timovi-model/sviProjektiClana id)}
+                   ))
