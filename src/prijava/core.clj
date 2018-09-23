@@ -14,6 +14,15 @@
            (route/resources "/")
            (GET "/index" [] (controller/index))
            (route/resources "/")
+
+           )
+
+(defn authenticated? [name pass]
+  (and (= name "user1")
+       (= pass "pass1")))
+
+
+(defroutes protected-routes
            (GET "/timovi" [] (controller/timovi))
            (route/resources "/")
            (GET "/login" [] (controller/login))
@@ -49,20 +58,12 @@
            (POST "/model/timovi/:idclan/dodajProjekat" [& params]
              (do (timovi-model/insertProjekat params)
                  (resp/redirect "/timovi")))
-
            )
-
-
-
-
-
-
-
 
 (defroutes app-routes
-  public-routes
-           (route/not-found "404 Page Not Found")
-           )
+           public-routes
+           (wrap-basic-authentication protected-routes authenticated?)
+           (route/not-found "404 Page Not Found"))
 (def app
   (handler/site app-routes)
   )

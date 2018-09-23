@@ -31,6 +31,7 @@
   (first (jdbc/query mysql-db
                   (sql/select * :timovi (sql/where {:idtim id})))))
 
+
 (defn sviClanoviTima [id]
   (jdbc/query mysql-db
                      (sql/select * :clanovi (sql/where {:idtim id}))))
