@@ -15,12 +15,12 @@
 <body >
 <div class="container">
     <ul class="nav nav-pills" id="navMeni">
-        <li role="presentation"><a href="/index">Početna</a></li>
-        <li role="presentation"><a href="/timovi">Timovi</a></li>
-        <li role="presentation"><a href="/model/timovi/dodajTim">Dodaj novi tim</a></li>
+        <li role="presentation"><a href="/login">Prijavi se</a></li>
     </ul>
 </div>
     <div id="forma" style="width:30%;margin-left: 150px;">
+
+        <form action="/login" method="post">
         <h3 style="margin-bottom:20px;color:#0f0f76;">Prijavi se</h3>
 
 
@@ -32,9 +32,9 @@
                 <label for="model">Password</label>
                 <input type="text" class="form-control" name="password" placeholder="Password"/>
             </div>
-            <td><a href="/model//login" class="btn btn-danger" style="width:150px; float:right">Prijavi se</a></td>
+            <button type="submit" class="btn btn-primary" style="margin-left: 130px;">Prijavi se</button>
 
-
+        </form>
 
 </div>
 </body>

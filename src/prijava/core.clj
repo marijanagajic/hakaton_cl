@@ -1,5 +1,6 @@
 (ns prijava.core
-  (:use compojure.core)
+  (:use compojure.core
+        )
   (:require [compojure.handler :as handler]
             [compojure.route :as route]
             [ring.middleware.basic-authentication :refer :all]
@@ -7,27 +8,25 @@
             [prijava.controller.controller :as controller]
             [prijava.model.timovi :as timovi-model]
             )
-  )
+  (:gen-class))
+
 
 (defroutes public-routes
-           (GET "/" [] (controller/index))
+           (GET "/" [] (controller/login))
            (route/resources "/")
            (GET "/index" [] (controller/index))
            (route/resources "/")
 
-           )
-
-(defn authenticated? [name pass]
-  (and (= name "user1")
-       (= pass "pass1")))
-
-
-(defroutes protected-routes
            (GET "/timovi" [] (controller/timovi))
            (route/resources "/")
+
            (GET "/login" [] (controller/login))
            (route/resources "/")
 
+
+           (POST "/login" [username password]
+             (do (timovi-model/do-login username password)
+                 ))
 
            (GET "/model/timovi/:id/clanovi" [id] (controller/clanoviTima id))
 
@@ -58,11 +57,12 @@
            (POST "/model/timovi/:idclan/dodajProjekat" [& params]
              (do (timovi-model/insertProjekat params)
                  (resp/redirect "/timovi")))
+
            )
+
 
 (defroutes app-routes
            public-routes
-           (wrap-basic-authentication protected-routes authenticated?)
            (route/not-found "404 Page Not Found"))
 (def app
   (handler/site app-routes)

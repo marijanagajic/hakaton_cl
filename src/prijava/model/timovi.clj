@@ -2,7 +2,9 @@
   (:refer-clojure :exclude [get])
   (:require [clojure.java.jdbc :as jdbc]
             [clojure.java.jdbc.sql :as sql]
-            )
+            [ring.util.response :as resp])
+  (:use prijava.users
+        prijava.model.timovi)
   )
 
 (def mysql-db {
@@ -15,6 +17,26 @@
 
 (def now (str (java.sql.Timestamp. (System/currentTimeMillis))))
 
+
+(defn check-login
+  [username password user-list]
+  (if (and (contains? user-list username) (= password (user-list username)))
+    true
+    false))
+
+(defn do-login
+  [username password]
+  (if (check-login username password users)
+    (do
+      (resp/redirect "/timovi"))
+    (do
+      (resp/redirect "/login"))))
+
+
+(defn getUserP [username password]
+  (first (jdbc/query mysql-db
+                     (sql/select * :korisnici (sql/where {:username username :password password})))))
+
 (defn sviTimoviJoinGradovi []
   (jdbc/query mysql-db
               ["SELECT * FROM timovi t INNER JOIN gradovi g ON (t.idgrad = g.idgrad)"]))
@@ -22,6 +44,10 @@
 (defn sviTimovi []
   (jdbc/query mysql-db
               ["SELECT * FROM timovi t"]))
+
+(defn sviKorisnici []
+  (jdbc/query mysql-db
+              ["SELECT k.username, k.password FROM korisnici k"]))
 
 (defn sviGradovi []
   (jdbc/query mysql-db

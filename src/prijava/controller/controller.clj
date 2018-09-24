@@ -2,6 +2,7 @@
   (:require
     [clostache.parser :as clostache]
     [prijava.model.timovi :as timovi-model]
+    [ring.util.response :as resp]
     ))
 
 (defn read-template [template-name]
@@ -16,7 +17,7 @@
   (render-template "index" {}))
 
 (defn login []
-  (render-template "login" {}))
+  (render-template "login-page" {}))
 
 
 (defn timovi []

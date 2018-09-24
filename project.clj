@@ -12,7 +12,7 @@
                  ]
   :plugins [[lein-ring "0.9.6"]]
   :ring {:handler prijava.core/app
-         :port 9595}
+         :port 9191}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                         [ring-mock "0.1.5"]]}}
