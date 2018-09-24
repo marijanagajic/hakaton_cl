@@ -11,10 +11,9 @@
   (:gen-class))
 
 
+
 (defroutes public-routes
            (GET "/" [] (controller/login))
-           (route/resources "/")
-           (GET "/index" [] (controller/index))
            (route/resources "/")
 
            (GET "/timovi" [] (controller/timovi))
@@ -23,6 +22,8 @@
            (GET "/login" [] (controller/login))
            (route/resources "/")
 
+           (GET "/uspesno" [] (controller/uspesno))
+           (route/resources "/")
 
            (POST "/login" [username password]
              (do (timovi-model/do-login username password)
@@ -33,6 +34,10 @@
            (GET "/model/timovi/:id/remove" [id]
              (do (timovi-model/obrisiTim id)
                  (resp/redirect "/timovi")))
+
+           (GET "/model/timovi/:id/removeProjekat" [id]
+             (do (timovi-model/obrisiProjekat id)
+                 (resp/redirect "/uspesno")))
 
            (GET "/model/timovi/:id/update" [id] (controller/izmenitiTim id))
 
@@ -50,13 +55,13 @@
 
            (POST "/model/timovi/:idtim/dodajClana" [& params]
              (do (timovi-model/insertClan params)
-                 (resp/redirect "/timovi")))
+                 (resp/redirect "/uspesno")))
 
            (GET "/model/timovi/:id/dodajProjekat" [id] (controller/dodatiProjekat id))
 
            (POST "/model/timovi/:idclan/dodajProjekat" [& params]
              (do (timovi-model/insertProjekat params)
-                 (resp/redirect "/timovi")))
+                 (resp/redirect "/uspesno")))
 
            )
 

@@ -19,6 +19,8 @@
 (defn login []
   (render-template "login-page" {}))
 
+(defn uspesno []
+  (render-template "success" {}))
 
 (defn timovi []
   (render-template "timovi" {:timovi (timovi-model/sviTimoviJoinGradovi)

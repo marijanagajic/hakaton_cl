@@ -33,21 +33,10 @@
       (resp/redirect "/login"))))
 
 
-(defn getUserP [username password]
-  (first (jdbc/query mysql-db
-                     (sql/select * :korisnici (sql/where {:username username :password password})))))
-
 (defn sviTimoviJoinGradovi []
   (jdbc/query mysql-db
               ["SELECT * FROM timovi t INNER JOIN gradovi g ON (t.idgrad = g.idgrad)"]))
 
-(defn sviTimovi []
-  (jdbc/query mysql-db
-              ["SELECT * FROM timovi t"]))
-
-(defn sviKorisnici []
-  (jdbc/query mysql-db
-              ["SELECT k.username, k.password FROM korisnici k"]))
 
 (defn sviGradovi []
   (jdbc/query mysql-db
@@ -69,6 +58,8 @@
 (defn obrisiTim [id]
   (jdbc/delete! mysql-db :timovi (sql/where {:idtim id})))
 
+(defn obrisiProjekat [id]
+  (jdbc/delete! mysql-db :projekti (sql/where {:idprojekat id})))
 
 (defn update [id params]
   (jdbc/update! mysql-db :timovi params (sql/where {:idtim id})))
