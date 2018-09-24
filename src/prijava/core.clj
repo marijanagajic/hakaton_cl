@@ -45,6 +45,12 @@
              (do (timovi-model/update (:idtim params) params)
                  (resp/redirect "/timovi")))
 
+           (GET "/model/timovi/:id/updateClan" [id] (controller/izmenitiClana id))
+
+           (POST "/model/timovi/:idclan/updateClan" [& params]
+             (do (timovi-model/updateClan (:idclan params) params)
+                 (resp/redirect "/uspesno")))
+
            (GET "/model/timovi/dodajTim" [] (controller/dodatiTim))
 
            (POST "/model/timovi/dodajTim" [& params]

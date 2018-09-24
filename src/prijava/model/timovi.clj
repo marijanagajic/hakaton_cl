@@ -46,6 +46,9 @@
   (first (jdbc/query mysql-db
                   (sql/select * :timovi (sql/where {:idtim id})))))
 
+(defn getClan [id]
+  (first (jdbc/query mysql-db
+                     (sql/select * :clanovi (sql/where {:idclan id})))))
 
 (defn sviClanoviTima [id]
   (jdbc/query mysql-db
@@ -63,6 +66,9 @@
 
 (defn update [id params]
   (jdbc/update! mysql-db :timovi params (sql/where {:idtim id})))
+
+(defn updateClan [id params]
+  (jdbc/update! mysql-db :clanovi params (sql/where {:idclan id})))
 
 (defn insertTim [params]
   (jdbc/insert! mysql-db :timovi params))

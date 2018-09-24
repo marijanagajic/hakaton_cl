@@ -24,18 +24,18 @@
     <h3 style="width: 750px;margin-top:25px; margin-right:50px ">Članovi tima - {{timovi.nazivtima}}</h3>
     <table style="width: 750px;margin-top:25px; margin-right:50px" class="table table-hover">
     <tr>
-        <th>Ime</th>
-        <th>Prezime</th>
+        <th>Ime i prezime</th>
         <th>Godine iskustva</th>
         <th>e-mail</th>
         <th>Dodaj projekat člana</th>
+        <th>Izmeni</th>
         {{#clanovi}}
             <tr class="success">
-                <th>{{ime}}</th>
-                <th>{{prezime}}</th>
+                <th>{{ime}} {{prezime}}</th>
                 <th>{{godiskustva}}</th>
                 <th>{{email}}</th>
                 <td><a href="/model/timovi/{{idclan}}/dodajProjekat" class="btn btn-primary">Dodaj projekat</a></td>
+                <td><a href="/model/timovi/{{idclan}}/updateClan" class="btn btn-primary">Izmeni</a></td>
             </tr>
         {{/clanovi}}
         {{^clanovi}}

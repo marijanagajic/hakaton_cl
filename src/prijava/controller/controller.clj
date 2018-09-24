@@ -13,9 +13,6 @@
   (clostache/render (read-template template-file) params))
 
 
-(defn index []
-  (render-template "index" {}))
-
 (defn login []
   (render-template "login-page" {}))
 
@@ -32,6 +29,10 @@
                                      :gradovi (timovi-model/sviGradovi)
                                         :clanovi (timovi-model/sviClanoviTima id)
                                      }))
+
+(defn izmenitiClana [id]
+  (render-template "izmenaClan" {:clanovi  (timovi-model/getClan id)
+                                }))
 
 (defn clanoviTima [id]
   (render-template "clanovi" {:clanovi (timovi-model/sviClanoviTima id)

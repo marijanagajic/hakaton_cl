@@ -70,32 +70,57 @@ INSERT INTO `gradovi` VALUES (1,'Beograd'),(2,'Novi Sad'),(3,'Niš');
 UNLOCK TABLES;
 
 --
--- Table structure for table `projekat`
+-- Table structure for table `korisnici`
 --
 
-DROP TABLE IF EXISTS `projekat`;
+DROP TABLE IF EXISTS `korisnici`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `projekat` (
+CREATE TABLE `korisnici` (
+  `idkorisnik` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idkorisnik`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `korisnici`
+--
+
+LOCK TABLES `korisnici` WRITE;
+/*!40000 ALTER TABLE `korisnici` DISABLE KEYS */;
+INSERT INTO `korisnici` VALUES (1,'user12','pass');
+/*!40000 ALTER TABLE `korisnici` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `projekti`
+--
+
+DROP TABLE IF EXISTS `projekti`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `projekti` (
   `idprojekat` int(11) NOT NULL AUTO_INCREMENT,
   `idclan` int(11) NOT NULL,
   `naziv` varchar(45) NOT NULL,
   `tehnologije` varchar(45) NOT NULL,
   `opis` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`idprojekat`),
-  KEY `idprijavaProjekat_idx` (`idclan`),
-  CONSTRAINT `idprijavaProjekat` FOREIGN KEY (`idclan`) REFERENCES `timovi` (`idtim`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  KEY `idprojekatClan_idx` (`idclan`),
+  CONSTRAINT `idprojekatClan` FOREIGN KEY (`idclan`) REFERENCES `clanovi` (`idclan`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `projekat`
+-- Dumping data for table `projekti`
 --
 
-LOCK TABLES `projekat` WRITE;
-/*!40000 ALTER TABLE `projekat` DISABLE KEYS */;
-INSERT INTO `projekat` VALUES (1,4,'Projekat','',''),(2,2,'Projekat 1','',''),(3,2,'Projekat 2','','');
-/*!40000 ALTER TABLE `projekat` ENABLE KEYS */;
+LOCK TABLES `projekti` WRITE;
+/*!40000 ALTER TABLE `projekti` DISABLE KEYS */;
+INSERT INTO `projekti` VALUES (1,4,'Projekat','',''),(5,5,'test pr','clojure','opis'),(6,12,'projekat 5','java','java'),(7,2,'Projekat2','web','novo'),(8,2,'Projekat 3','mobile','');
+/*!40000 ALTER TABLE `projekti` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -114,10 +139,11 @@ CREATE TABLE `timovi` (
   `idgrad` int(11) DEFAULT NULL,
   `brojtakmicenja` varchar(45) DEFAULT NULL,
   `brojclanova` varchar(45) DEFAULT NULL,
+  `uloga` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idtim`),
   KEY `idgradPrijava_idx` (`idgrad`),
   CONSTRAINT `idgradPrijava` FOREIGN KEY (`idgrad`) REFERENCES `gradovi` (`idgrad`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +152,7 @@ CREATE TABLE `timovi` (
 
 LOCK TABLES `timovi` WRITE;
 /*!40000 ALTER TABLE `timovi` DISABLE KEYS */;
-INSERT INTO `timovi` VALUES (1,'clojure','clojure ','clojure123','code',1,'2','4'),(2,'Tim1','pobednici na 2 hakatona','tim1','tim1',1,'2','4'),(4,'Tim3','web tehnologije','tim3','tim3',3,'0','4'),(6,'Tim 5','funkcionalno programiranje','tim5','tim5',1,'8','3'),(9,'Tim 6','UI/IX design','tim6','k',2,'4','4'),(13,'Tim 7','android aplikacije','tim7','2',2,'2','2');
+INSERT INTO `timovi` VALUES (1,'clojure','clojure ','clojure123','code',1,'2','4','admin'),(2,'Tim1','pobednici na 2 hakatona','tim1','tim1',1,'2','4','admin'),(4,'Tim3','web tehnologije','tim3','tim3',3,'0','4',NULL),(6,'Tim 5','funkcionalno programiranje','tim5','tim5',1,'8','3',NULL),(9,'Tim 6','UI/IX design','tim6','k',2,'4','4',NULL),(13,'Tim 7','android aplikacije','tim7','2',2,'2','2',NULL),(20,'timtest','tt','tkh','zgb',1,'5','5',NULL);
 /*!40000 ALTER TABLE `timovi` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -139,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-20 12:33:17
+-- Dump completed on 2018-09-25  0:06:54
